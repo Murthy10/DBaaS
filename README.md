@@ -26,3 +26,11 @@ Used plugins:
   * @graphile/postgis
   * @graphile-contrib/pg-order-by-related
   * @graphile/pg-aggreates
+
+
+## ToDo
+ - [ ] pg_prewarm
+ - [ ] average query time
+ - [x] pgTune
+ - [ ] osm_stops reference to didok_stops for postgraphile
+ - [ ] ...
