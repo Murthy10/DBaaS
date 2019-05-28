@@ -1,0 +1,28 @@
+version: '3'
+services:
+  sakila_db:
+    build:
+      context: docker
+      dockerfile: Dockerfile.Sakila
+    ports:
+    - "5432:5432"
+    environment:
+      POSTGRES_PASSWORD: mysecretpassword
+    command: ["-c", "shared_buffers=5GB", "-c","effective_cache_size=15GB","-c", "maintenance_work_mem=1280MB","-c", "checkpoint_completion_target=0.7", "-c","wal_buffers=16MB", "-c","default_statistics_target=100", "-c","random_page_cost=1.1", "-c","effective_io_concurrency=200","-c", "work_mem=26214kB","-c", "min_wal_size=1GB","-c", "max_wal_size=2GB" ,"-c", "max_worker_processes=4","-c", "max_parallel_workers_per_gather=2", "-c","max_parallel_workers=4"]
+  eosm_ch_db:
+    build:
+      context: docker
+      dockerfile: Dockerfile.Eosm
+    ports:
+    - "5433:5432"
+    environment:
+      POSTGRES_PASSWORD: mysecretpassword
+    command: ["-c", "shared_buffers=5GB", "-c","effective_cache_size=15GB","-c", "maintenance_work_mem=1280MB","-c", "checkpoint_completion_target=0.7", "-c","wal_buffers=16MB", "-c","default_statistics_target=100", "-c","random_page_cost=1.1", "-c","effective_io_concurrency=200", "-c" ,"work_mem=26214kB","-c", "min_wal_size=1GB", "-c","max_wal_size=2GB" ,"-c", "max_worker_processes=4","-c", "max_parallel_workers_per_gather=2", "-c","max_parallel_workers=4"]
+  postgraphile_sakila:
+    build:
+      context: docker
+      dockerfile: Dockerfile.Postgraphile
+    ports:
+    - "5001:5001"
+    entrypoint: dockerize -wait tcp://sakila_db:5432 -timeout 30s
+    command: postgraphile --connection postgres://postgres:mysecretpassword@sakila_db:5432/sakila --host 0.0.0.0 --port 5001 --schema public --watch --enhance-graphiql --append-plugins postgraphile-plugin-connection-filter @graphile/postgis @graphile-contrib/pg-order-by-related
