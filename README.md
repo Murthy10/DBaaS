@@ -25,7 +25,7 @@ Used plugins:
   * postgraphile-plugin-connection-filter
   * @graphile/postgis
   * @graphile-contrib/pg-order-by-related
-  * @graphile/pg-aggreates
+  * @graphile/pg-aggreates (doesn't work until now)
 
 
 ## ToDo
