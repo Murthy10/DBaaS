@@ -20,6 +20,19 @@ def run():
     for df, title in zip(graphql_data_frames, graphql_titles):
         save_df_plot(df, title)
         save_df(df, title)
+    combination_plot(postgrest_data_frames, graphql_data_frames)
+
+
+def combination_plot(postgrest_dfs, graphql_dfs):
+    values = []
+    labels = []
+    for (i, postgrest), (j, graphql) in zip(postgrest_dfs[0].iterrows(), graphql_dfs[0].iterrows()):
+        values.append(postgrest['AvgTime'])
+        values.append(graphql['AvgTime'])
+        labels.append('PostgREST-' + postgrest['Query'])
+        labels.append('Postgraphile-' + postgrest['Query'])
+    df = pd.DataFrame({'Query': labels, 'AvgTime': values})
+    save_df_plot(df, 'Sakila')
 
 
 def save_df_plot(data_frame, title, show=False):

@@ -25,7 +25,7 @@ services:
     ports:
     - "5001:5001"
     entrypoint: dockerize -wait tcp://sakila_db:5432 -timeout 30s
-    command: postgraphile --connection postgres://postgres:mysecretpassword@sakila_db:5432/sakila --host 0.0.0.0 --port 5001 --schema public --watch --enhance-graphiql --append-plugins postgraphile-plugin-connection-filter @graphile/postgis @graphile-contrib/pg-order-by-related
+    command: postgraphile --connection postgres://postgres:mysecretpassword@sakila_db:5432/sakila --host 0.0.0.0 --port 5001 --schema public --watch --enhance-graphiql --append-plugins postgraphile-plugin-connection-filter,@graphile/postgis,@graphile-contrib/pg-order-by-related
   postgraphile_eosm:
     build:
       context: docker
@@ -33,7 +33,7 @@ services:
     ports:
     - "5002:5002"
     entrypoint: dockerize -wait tcp://eosm_db:5432 -timeout 30s
-    command: postgraphile --connection postgres://postgres:mysecretpassword@eosm_db:5432/eosm_ch --host 0.0.0.0 --port 5002 --schema public --watch --enhance-graphiql --append-plugins postgraphile-plugin-connection-filter @graphile/postgis @graphile-contrib/pg-order-by-related
+    command: postgraphile --connection postgres://postgres:mysecretpassword@eosm_db:5432/eosm_ch --host 0.0.0.0 --port 5002 --schema public --watch --enhance-graphiql --append-plugins postgraphile-plugin-connection-filter,@graphile/postgis,@graphile-contrib/pg-order-by-related
   postgrest_sakila:
     image: "postgrest/postgrest"
     ports:
