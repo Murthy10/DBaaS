@@ -197,3 +197,8 @@ CREATE VIEW query14 AS
   AND ST_DWithin(osm.geom, perimeter.geom, 100)
   ORDER BY st_distance(osm.geom, perimeter.geom) DESC;
 --> 22 rows.
+
+CREATE VIEW didok_osm AS
+  SELECT didok_stops.uic_ref as didok_uic_ref,ld, dst_nr, kz, didok_stops.name as didok_name, laenge, namel, dst_abk, go_nr, go_abk, gde_nr,gemeinde, kt, bp, vp, vg, vd,y_koord, x_koord, hoehe, osm_stops.uic_ref as osm_stops_uic_ref, geom, didok_stops.name as osm_stops_name, osm_id
+  FROM didok_stops
+  INNER JOIN osm_stops ON didok_stops.uic_ref = osm_stops.uic_ref;

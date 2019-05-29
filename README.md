@@ -46,7 +46,14 @@ python3 postgrest_requests.py
 
 ## ToDo
  - [x] pg_prewarm
- - [ ] average query time
+ - [x] average query time
  - [x] pgTune
  - [ ] osm_stops reference to didok_stops for postgraphile
  - [ ] Mention requests.elapsed.total_seconds()
+
+## Impressions
+![EOSM_Postgraphile](DBaaS/results/EOSM_Postgraphile.png)
+![SAKILA_Postgraphile](DBaaS/results/SAKILA_Postgraphile.png)
+
+![EOSM_PostgREST](DBaaS/results/EOSM_PostgREST.png)
+![SAKILA_PostgREST](DBaaS/results/SAKILA_PostgREST.png)

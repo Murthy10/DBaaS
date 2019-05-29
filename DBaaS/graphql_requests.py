@@ -16,24 +16,37 @@ HEADERS = {'Content-type': 'application/json', 'Accept': 'text/plain'}
 
 SAKILA_QUERIES = [(func, name) for name, func in inspect.getmembers(sakila_graphql) if 'query' in name]
 EOSM_QUERIES = [(func, name) for name, func in inspect.getmembers(eosm_ch_graphql) if 'query' in name]
+REPETITIONS = 10
 
 
 def run():
-    execute(SAKILA_QUERIES, SAKILA_URL, 'SAKILA')
-    execute(EOSM_QUERIES, EOSM_URL, 'EOSM')
+    sakila_df = execute(SAKILA_QUERIES, SAKILA_URL, 'SAKILA Postgraphile')
+    eosm_df = execute(EOSM_QUERIES, EOSM_URL, 'EOSM Postgraphile')
+    return [sakila_df, eosm_df]
 
 
 def execute(queries, url, title):
-    data_frame = pd.DataFrame(columns=['Query', 'Time', 'Records'])
+    data_frame = pd.DataFrame(columns=['Query', 'AvgTime', 'Records'])
     print(title)
     for query, name in queries:
         data = dict(query=query)
-        response = requests.post(url, data=json.dumps(data), headers=HEADERS)
-        data_frame.loc[-1] = [name, response.elapsed.total_seconds(), length(response)]
+        average_time, response = average_of_multiple_requests(url, data, REPETITIONS, HEADERS)
+        data_frame.loc[-1] = [name, average_time, length(response)]
         data_frame.index = data_frame.index + 1
         data_frame = data_frame.sort_index()
     print(data_frame)
     print()
+    return data_frame
+
+
+def average_of_multiple_requests(url, data, repetitions, headers):
+    response = None
+    time_sum = 0
+    data = json.dumps(data)
+    for i in range(repetitions):
+        response = requests.post(url, data=data, headers=headers)
+        time_sum += response.elapsed.total_seconds()
+    return (time_sum / repetitions), response
 
 
 def length(response):

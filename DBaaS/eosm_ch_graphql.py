@@ -1,8 +1,9 @@
 query1 = """
 {
-  allQuery1S {
+  allDidokOsms {
+    totalCount
     nodes {
-        count
+      didokName
     }
   }
 }
