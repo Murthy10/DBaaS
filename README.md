@@ -20,6 +20,7 @@ python3 graphql_requests.py
   * GROUP BY not possible -> Views
   * SUM not possible -> Views (wip @graphile/pg-aggreates)
   * Nested Queries not possible -> View (7a..)
+  * Bad Docs!
 
 Used plugins:
   * postgraphile-plugin-connection-filter
@@ -36,11 +37,11 @@ python3 postgrest_requests.py
 
 
 ### Notes
-  * Nice API Doc (http://postgrest.org/en/v5.2/api.html)
-  * Used Swagger Container
+  * Nice API Doc / Swagger (http://postgrest.org/en/v5.2/api.html)
   * Aggregations not possible (COUNT, SUM) -> Views
   * Nested Queries not possible -> Views
   * Multiple Join Filter results in null -> Change direction (7c)
+  * No Geo-Spatial queries -> Views
 
 
 ## ToDo
