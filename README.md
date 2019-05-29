@@ -45,8 +45,8 @@ python3 postgrest_requests.py
 
 
 ## ToDo
- - [ ] pg_prewarm
+ - [x] pg_prewarm
  - [ ] average query time
  - [x] pgTune
  - [ ] osm_stops reference to didok_stops for postgraphile
- - [ ] ...
+ - [ ] Mention requests.elapsed.total_seconds()

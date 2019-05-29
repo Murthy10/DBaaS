@@ -14,7 +14,7 @@ EOSM_QUERIES = [(func, name) for name, func in inspect.getmembers(eosm_ch_postgr
 
 
 def run():
-    # execute(SAKILA_QUERIES, SAKILA_URL, 'SAKILA')
+    execute(SAKILA_QUERIES, SAKILA_URL, 'SAKILA')
     execute(EOSM_QUERIES, EOSM_URL, 'EOSM')
 
 
