@@ -28,6 +28,21 @@ Used plugins:
   * @graphile/pg-aggreates (doesn't work until now)
 
 
+## PostgREST
+Run: (previously, install the dependencies mentioned in the requirements.txt)
+```bash
+python3 postgrest_requests.py
+```
+
+
+### Notes
+  * Nice API Doc (http://postgrest.org/en/v5.2/api.html)
+  * Used Swagger Container
+  * Aggregations not possible (COUNT, SUM) -> Views
+  * Nested Queries not possible -> Views
+  * Multiple Join Filter results in null -> Change direction (7c)
+
+
 ## ToDo
  - [ ] pg_prewarm
  - [ ] average query time

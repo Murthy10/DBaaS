@@ -26,7 +26,6 @@ services:
     - "5001:5001"
     entrypoint: dockerize -wait tcp://sakila_db:5432 -timeout 30s
     command: postgraphile --connection postgres://postgres:mysecretpassword@sakila_db:5432/sakila --host 0.0.0.0 --port 5001 --schema public --watch --enhance-graphiql --append-plugins postgraphile-plugin-connection-filter @graphile/postgis @graphile-contrib/pg-order-by-related
-
   postgraphile_eosm:
     build:
       context: docker
@@ -35,3 +34,43 @@ services:
     - "5002:5002"
     entrypoint: dockerize -wait tcp://eosm_db:5432 -timeout 30s
     command: postgraphile --connection postgres://postgres:mysecretpassword@eosm_db:5432/eosm_ch --host 0.0.0.0 --port 5002 --schema public --watch --enhance-graphiql --append-plugins postgraphile-plugin-connection-filter @graphile/postgis @graphile-contrib/pg-order-by-related
+  postgrest_sakila:
+    image: "postgrest/postgrest"
+    ports:
+    - "3000:3000"
+    environment:
+      PGRST_DB_URI: postgres://postgres:mysecretpassword@sakila_db:5432/sakila
+      PGRST_DB_ANON_ROLE: postgres
+      PGRST_DB_SCHEMA: public
+    depends_on:
+      - sakila_db
+  swagger_sakila:
+    image: swaggerapi/swagger-ui
+    ports:
+      - "8080:8080"
+    expose:
+      - "8080"
+    environment:
+      API_URL: http://localhost:3000/
+    depends_on:
+      - postgrest_sakila
+  postgrest_eosm:
+    image: "postgrest/postgrest"
+    ports:
+    - "3001:3000"
+    environment:
+      PGRST_DB_URI: postgres://postgres:mysecretpassword@eosm_db:5432/eosm_ch
+      PGRST_DB_ANON_ROLE: postgres
+      PGRST_DB_SCHEMA: public
+    depends_on:
+      - sakila_db
+  swagger_eosm:
+    image: swaggerapi/swagger-ui
+    ports:
+      - "8081:8080"
+    expose:
+      - "8081"
+    environment:
+      API_URL: http://localhost:3001/
+    depends_on:
+      - postgrest_sakila
