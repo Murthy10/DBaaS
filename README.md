@@ -49,7 +49,7 @@ python3 postgrest_requests.py
  - [x] average query time
  - [x] pgTune
  - [ ] osm_stops reference to didok_stops for postgraphile
- - [ ] Mention requests.elapsed.total_seconds()
+ - [ ] Prepare slides for a presentation (mention requests.elapsed.total_seconds)
 
 ## Impressions
 ![EOSM_Postgraphile](DBaaS/results/EOSM_Postgraphile.png)
