@@ -53,7 +53,7 @@ python3 postgrest_requests.py
 
 ## Impressions
 ![EOSM_Postgraphile](DBaaS/results/EOSM_Postgraphile.png)
-![SAKILA_Postgraphile](DBaaS/results/SAKILA_Postgraphile.png)
-
 ![EOSM_PostgREST](DBaaS/results/EOSM_PostgREST.png)
+
+![SAKILA_Postgraphile](DBaaS/results/SAKILA_Postgraphile.png)
 ![SAKILA_PostgREST](DBaaS/results/SAKILA_PostgREST.png)

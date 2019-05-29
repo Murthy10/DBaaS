@@ -27,7 +27,7 @@ def save_df_plot(data_frame, title, show=False):
     df.plot.bar(x='Query', y='AvgTime [s]', rot=90, title=title)
     path = os.path.join(dir_path, 'results')
     path = os.path.join(path, title + '.png')
-    plt.savefig(path)
+    plt.savefig(path, bbox_inches='tight')
     if show:
         plt.show()
 
