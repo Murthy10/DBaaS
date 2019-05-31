@@ -41,7 +41,7 @@ python3 graphql_requests.py
   * GROUP BY not possible -> Views
   * SUM not possible -> Views (wip @graphile/pg-aggreates)
   * Nested Queries not possible -> View (7a..)
-  * Bad Docs!
+  * Extended docs would be nice
 
 Used plugins:
   * postgraphile-plugin-connection-filter
