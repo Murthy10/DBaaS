@@ -2,13 +2,34 @@
 To use this repo you have to install docker and docker-compose on your system.
 Further, python3.6 and pip is required.
 
-Run the containers:
+## Getting Started
+For preparation clone this repository and download the two database dumps from the following sources:
+   * eosm_ch: https://drive.switch.ch/index.php/s/GmghfzyjLm3BwQP
+   * sakila: https://drive.switch.ch/index.php/s/LMnvH1fJlJvygHG
+
+After that move the two dumps into the docker/data folder.
+```bash
+cp eosm_ch.sql docker/data
+cp sakila.sql docker/data
+```
+
+
+Now you are ready to run the containers:
 ```bash
 docker-compose build
 docker-compose up
 ```
 
-## postgraphile
+The PostGraphile and PostgREST Api should be reader under:
+  * Sakila DB (Geospatial data)
+    * PostGraphile: https://localhost:5002
+    * PostgREST: https://localhost:3001
+  * Sakila DB (a lot of relations)
+    * PostGraphile: https://localhost:5001
+    * PostgREST: https://localhost:3000
+
+
+## PostGraphile
 Run: (previously, install the dependencies mentioned in the requirements.txt)
 ```bash
 python3 graphql_requests.py
