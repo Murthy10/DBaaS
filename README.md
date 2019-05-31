@@ -24,7 +24,7 @@ The PostGraphile and PostgREST Api should be reachable under:
   * Sakila DB (Geospatial data)
     * PostGraphile: https://localhost:5002
     * PostgREST: https://localhost:3001
-  * Sakila DB (a lot of relations)
+  * eosm_ch DB (a lot of relations)
     * PostGraphile: https://localhost:5001
     * PostgREST: https://localhost:3000
 
