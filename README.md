@@ -21,10 +21,10 @@ docker-compose up
 ```
 
 The PostGraphile and PostgREST Api should be reachable under:
-  * Sakila DB (Geospatial data)
+  * eosm_ch DB (Geospatial data)
     * PostGraphile: https://localhost:5002
     * PostgREST: https://localhost:3001
-  * eosm_ch DB (a lot of relations)
+  * Sakila DB (a lot of relations)
     * PostGraphile: https://localhost:5001
     * PostgREST: https://localhost:3000
 
