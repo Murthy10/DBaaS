@@ -20,7 +20,7 @@ docker-compose build
 docker-compose up
 ```
 
-The PostGraphile and PostgREST Api should be reader under:
+The PostGraphile and PostgREST Api should be reachable under:
   * Sakila DB (Geospatial data)
     * PostGraphile: https://localhost:5002
     * PostgREST: https://localhost:3001
